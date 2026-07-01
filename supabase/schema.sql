@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS profiles (
 -- Index for IP lookup during signup
 CREATE INDEX IF NOT EXISTS idx_profiles_ip_address ON profiles (ip_address);
 
+-- Unique constraint: one IP = one account
+ALTER TABLE profiles ADD CONSTRAINT unique_ip_address UNIQUE (ip_address);
+
 -- RLS policies
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 
